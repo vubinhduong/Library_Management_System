@@ -1,0 +1,35 @@
+.header {
+	-fx-background-color: #00a032;
+	-fx-font-size: 30px;
+	-fx-font-family: "Verdana";
+}
+
+.header:hover {
+	-fx-background-color: #000;
+	-fx-cursor: hand;
+	
+}
+
+.tab {
+	-fx-background-color: #666666;
+	-fx-font-size: 20px;
+	-fx-font-family: "Verdana";
+}
+
+.tab:hover {
+	-fx-background-color: #000;
+		-fx-cursor: hand;
+}
+
+.newstable {
+	-fx-min-height: 300px;
+
+}
+
+.date-picker .text-field {
+    -fx-font: 20px "Arial";
+}
+
+.date-picker {
+    -fx-font: 15px "Arial";
+}

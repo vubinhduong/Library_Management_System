@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<JFXTabPane id="statistic" fx:id="tabpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1277.0" side="LEFT" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatisticController">
+	<tabs>
+		<Tab styleClass="header">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+			</content>
+			<graphic>
+				<Label id="header" minHeight="100.0" minWidth="300.0" prefHeight="75.0" prefWidth="254.0" style="-fx-background-color: #39e600;" text="STATISTIC" textFill="WHITE">
+					<graphic>
+						<FontAwesomeIconView fill="WHITE" glyphName="EDIT" size="55" />
+					</graphic>
+					<font>
+						<Font size="40.0" />
+					</font>
+					<padding>
+						<Insets left="25.0" />
+					</padding>
+				</Label>
+			</graphic>
+		</Tab>
+		<Tab styleClass="tab2">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
+					<children>
+						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+							<columns>
+								<TableColumn prefWidth="75.0" text="BookId" />
+								<TableColumn prefWidth="94.4000244140625" text="BookTitle" />
+								<TableColumn prefWidth="90.4000244140625" text="Available" />
+								<TableColumn prefWidth="91.9998779296875" text="isBorrow" />
+								<TableColumn prefWidth="125.60000610351562" text="AuthorName" />
+								<TableColumn prefWidth="72.0" text="Price" />
+								<TableColumn prefWidth="128.7999267578125" text="Publisher" />
+                        <TableColumn prefWidth="152.00002441406252" text="Genres" />
+                        <TableColumn prefWidth="75.0" text="Pages" />
+                        <TableColumn prefWidth="75.0" text="Content" />
+							</columns>
+						</TableView>
+                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
+                     <children>
+                        <Text fill="WHITE" layoutX="26.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genres:">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <JFXComboBox layoutX="119.0" layoutY="35.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
+                        <Text fill="WHITE" layoutX="331.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author:">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <JFXComboBox layoutX="426.0" layoutY="35.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
+                        <JFXComboBox layoutX="763.0" layoutY="34.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
+                        <Text fill="WHITE" layoutX="643.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher:">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PRINT" size="34" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding></JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="FILE_TEXT" size="30" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+					</children>
+				</AnchorPane>
+			</content>
+			<graphic>
+				<Label minHeight="100.0" minWidth="300.0" styleClass="tabselect" text=" Book" textFill="WHITE">
+					<graphic>
+						<FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="40" text="" />
+					</graphic>
+					<font>
+						<Font size="30.0" />
+					</font>
+					<padding>
+						<Insets left="60.0" />
+					</padding>
+				</Label>
+			</graphic>
+		</Tab>
+		<Tab styleClass="tab2">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
+					<children>
+						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+							<columns>
+								<TableColumn prefWidth="420.80003356933594" text="AuthorName" />
+								<TableColumn prefWidth="412.7998046875" text="Number of Books" />
+							</columns>
+						</TableView>
+                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
+                     <children>
+                        <Text fill="WHITE" layoutX="528.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AuthorName:">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <TextField layoutX="697.0" layoutY="33.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PRINT" size="34" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding></JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="FILE_TEXT" size="30" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+					</children>
+				</AnchorPane>
+			</content>
+			<graphic>
+				<Label minHeight="100.0" minWidth="300.0" styleClass="tabselect" text=" Author" textFill="WHITE">
+					<font>
+						<Font size="30.0" />
+					</font>
+					<padding>
+						<Insets left="60.0" />
+					</padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="40" />
+               </graphic>
+				</Label>
+			</graphic>
+		</Tab>
+		<Tab>
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
+					<children>
+						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+							<columns>
+								<TableColumn prefWidth="419.73341369628906" text="Publisher" />
+								<TableColumn prefWidth="413.06640625" text="Number of Books" />
+							</columns>
+						</TableView>
+                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
+                     <children>
+                        <Text fill="WHITE" layoutX="577.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher:">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <TextField layoutX="701.0" layoutY="29.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PRINT" size="34" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding></JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="FILE_TEXT" size="30" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+					</children>
+				</AnchorPane>
+			</content>
+			<graphic>
+				<Label minHeight="100.0" minWidth="300.0" styleClass="tabselect" text=" Publisher" textFill="WHITE">
+					<font>
+						<Font size="30.0" />
+					</font>
+					<padding>
+						<Insets left="60.0" />
+					</padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GLOBE" size="40" />
+               </graphic>
+				</Label>
+			</graphic>
+		</Tab>
+		<Tab>
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
+					<children>
+						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+							<columns>
+								<TableColumn prefWidth="104.00025177001953" text="UserId" />
+								<TableColumn prefWidth="217.599609375" text="Name" />
+								<TableColumn prefWidth="188.53268432617188" text="Birth" />
+								<TableColumn prefWidth="324.0" text="Contact" />
+							</columns>
+						</TableView>
+                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
+                     <children>
+                        <Text fill="WHITE" layoutX="331.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserId:">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="673.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <TextField layoutX="425.0" layoutY="31.0" prefHeight="39.0" prefWidth="200.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="756.0" layoutY="32.0" prefHeight="39.0" prefWidth="200.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PRINT" size="34" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding></JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="FILE_TEXT" size="30" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+					</children>
+				</AnchorPane>
+			</content>
+			<graphic>
+				<Label minHeight="100.0" minWidth="300.0" styleClass="tabselect" text=" User" textFill="WHITE">
+					<font>
+						<Font size="30.0" />
+					</font>
+					<padding>
+						<Insets left="60.0" />
+					</padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="44" />
+               </graphic>
+				</Label>
+			</graphic>
+		</Tab>
+		<Tab>
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
+					<children>
+						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+							<columns>
+								<TableColumn text="ID" />
+								<TableColumn text="UserID" />
+								<TableColumn minWidth="0.0" prefWidth="217.33349609375" text="BookTitle" />
+								<TableColumn prefWidth="82.66650390625" text="LibID" />
+								<TableColumn prefWidth="126.1337890625" text="Ngày mượn" />
+								<TableColumn prefWidth="122.1328125" text="Hạn trả" />
+								<TableColumn prefWidth="125.599609375" text="Ngày trả" />
+							</columns>
+						</TableView>
+                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
+                     <children>
+                        <JFXToggleButton layoutX="733.0" layoutY="16.0" text="Đang mượn" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXToggleButton>
+                        <JFXToggleButton layoutX="561.0" layoutY="18.0" text="Quá hạn" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXToggleButton>
+                     </children>
+                  </AnchorPane>
+                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PRINT" size="34" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding></JFXButton>
+                  <JFXButton alignment="TOP_LEFT" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <Label alignment="CENTER" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: #2a2c36;">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="FILE_TEXT" size="30" />
+                           </graphic>
+                        </Label>
+                     </graphic>
+                     <padding>
+                        <Insets left="-20.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+					</children>
+				</AnchorPane>
+			</content>
+			<graphic>
+				<Label minHeight="100.0" minWidth="300.0" styleClass="tabselect" text=" Borrow" textFill="WHITE">
+					<font>
+						<Font size="30.0" />
+					</font>
+					<padding>
+						<Insets left="50.0" />
+					</padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="RETWEET" size="40" />
+               </graphic>
+				</Label>
+			</graphic>
+		</Tab>
+	</tabs>
+</JFXTabPane>

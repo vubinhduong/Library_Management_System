@@ -1,0 +1,135 @@
+#home {
+	-fx-background-image: url("/image/background.jpg");
+}
+
+#green {
+    -fx-background-color:
+        linear-gradient(#f0ff35, #a9ff00),
+        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #395306;
+}
+
+#red {
+    -fx-background-color:
+        linear-gradient(#f0ff35, #a9ff00),
+        radial-gradient(center 50% -40%, radius 200%, #ff704d 45%, #ff3300 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #395306;
+}
+
+.button {
+	-fx-border-color: lightblue;
+	-fx-border-width: 1px;
+}
+
+.button .text {
+	-fx-font-family: system-ui;
+	-fx-font-size: 22px;
+}
+
+.button:hover {
+	-fx-cursor: hand;
+	-fx-scale-x: 108%;
+	-fx-scale-y: 108%;
+}
+
+.table-view{
+    -fx-background-color: transparent;
+ }
+
+.table-view:focused{
+    
+}
+
+.table-view .column-header {
+     -fx-background-color: transparent;
+} 
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0.0%, #424141 100.0%);
+}
+
+.table-view .column-header-background .label{
+     -fx-background-color: transparent; 
+    -fx-font-weight:bold;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+.table-view .table-column{
+    -fx-alignment:center;
+}
+
+.table-view .table-cell{
+    -fx-font-size:18px;           
+}
+
+.table-row-cell{
+    -fx-background-color: white;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em; 
+}
+
+.table-row-cell:odd{
+    -fx-background-color:  #ffd480;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em;  
+}
+
+
+.table-row-cell:selected {
+    -fx-background-color: #00ccff;
+}
+
+#bookDetail {
+	-fx-background-image: url("/image/bookDetail.jpg");
+}
+
+.jfx-date-picker:editable .date-picker-display-node .text {
+	-fx-font-size: 20px;
+	-fx-fill: red;
+}
+
+#tabpane {
+	-fx-tab-min-height: 4.7em;
+	-fx-tab-max-height: 4.7em;
+	-fx-tab-min-width: 211px;
+	-fx-tab-max-width: 211px;	
+}
+
+.tab {
+	-fx-background-color: #2a2c36;
+}
+
+.tab:hover {
+	-fx-cursor: hand;
+}
+
+.tab-header-background {
+	-fx-background-color: #2a2c36;
+}
+
+.tab-pane *.tab-header-background {
+	-fx-background-color: #2a2c36;
+}
+
+.tab .tab-label {
+	-fx-background-color: transparent;
+	-fx-alightment: CENTER;
+	-fx-text-fill: #fff;
+	-fx-font-weight: bold;
+	-fx-font-size: 25px;
+}
+
+.tab:hover {
+	-fx-cursor: hand;
+}
+
+.tab:selected {
+	-fx-background-color: #39e600;
+}
