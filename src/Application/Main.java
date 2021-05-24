@@ -15,13 +15,12 @@ public class Main extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		try {
 			System.out.println(javafx.scene.text.Font.getFamilies());
-			Parent root = FXMLLoader.load(getClass().getResource("App.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
 			Scene scene = new Scene(root);
-//			scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Vũ Bình Dương - 20183903");
 			primaryStage.show();
-		} catch (Exception e) { 
+		} catch (Exception e) {  
 			e.printStackTrace();
 		}
 	}

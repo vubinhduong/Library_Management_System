@@ -18,6 +18,7 @@ import com.jfoenix.controls.JFXToggleButton;
 import Model.Book;
 import Model.Borrow;
 import Model.User;
+import Model.borrowDetail;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +38,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
@@ -46,6 +48,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class AppController implements Initializable {
+
+	@FXML
+	public Text name1;
+
+	@FXML
+	private TableView<borrowDetail> borrowsView;
+	@FXML
+	private TableColumn<borrowDetail, String> idZ;
+	@FXML
+	private TableColumn<borrowDetail, String> nameZ;
+	@FXML
+	private TableColumn<borrowDetail, String> day1Z;
+	@FXML
+	private TableColumn<borrowDetail, String> day2Z;
 
 	@FXML
 	private TabPane tabPane;
@@ -112,36 +128,15 @@ public class AppController implements Initializable {
 	private JFXToggleButton outOfStockBtn;
 
 	@FXML
-	private TableView<Borrow> borrowsView;
+	private ComboBox<String> phieuIdField;
 	@FXML
-	private TableColumn<Borrow, String> phieuIdCol;
+	private Text nameDetail;
 	@FXML
-	private TableColumn<Borrow, String> usernameCol;
+	private Text libDetail;
 	@FXML
-	private TableColumn<Borrow, String> bookTitleCol2;
+	private Text feeDetail;
 	@FXML
-	private TableColumn<Borrow, String> borrowDayCol;
-	@FXML
-	private TableColumn<Borrow, String> librarianCol;
-	@FXML
-	private TableColumn<Borrow, Integer> depositCol;
-	@FXML
-	private TableColumn<Borrow, Integer> stateCol;
-	@FXML
-	private TableColumn<Borrow, String> returnDayCol;
-	@FXML
-	private TableColumn<Borrow, String> returnedDayCol;
-
-	@FXML
-	private TextField phieuIdField;
-	@FXML
-	private TextField userIdBField;
-	@FXML
-	private JFXToggleButton isBorrowedBtn;
-	@FXML
-	private JFXToggleButton isReturnedBtn;
-	@FXML
-	private JFXToggleButton isOverdatedBtn;
+	private Text dateDetail;
 
 	@FXML
 	private GridPane bookGrid;
@@ -159,13 +154,14 @@ public class AppController implements Initializable {
 
 	public ObservableList<User> userList;
 	public ObservableList<Book> bookList;
-	public ObservableList<Borrow> borrowList;
+	public ObservableList<borrowDetail> borrowList;
 	ObservableList<String> listPublisher = FXCollections.observableArrayList("", "NXB Kim Đồng", "NXB Hội Nhà Văn",
 			"NXB Văn học", "NXB Tổng Hợp TPHCM", "NXB IPM", "NXB Trẻ");
 
 	List<Book> books = new ArrayList<Book>();
 	List<User> users = new ArrayList<User>();
-	List<Borrow> borrows = new ArrayList<Borrow>();
+	List<String> idList = new ArrayList<String>();
+	List<borrowDetail> borrows = new ArrayList<borrowDetail>();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -175,7 +171,7 @@ public class AppController implements Initializable {
 
 			initBookpage(st);
 			initUserpage(st);
-			initBorrowPage(st);
+			initPhieuMuon();
 
 			publisherField.setItems(listPublisher);
 
@@ -232,6 +228,23 @@ public class AppController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	@FXML
+	public void addBorrowView(ActionEvent e) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/Application/AddBorrow.fxml"));
+		Parent parent = null;
+		try {
+			parent = loader.load();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		Scene scene = new Scene(parent);
+		stage.setScene(scene);
+		stage.show();
+	}
+
 
 	@FXML
 	public void statisticView(ActionEvent e) {
@@ -269,10 +282,12 @@ public class AppController implements Initializable {
 			} catch (SQLException e1) {
 				Alert alert2 = new Alert(AlertType.INFORMATION);
 				alert.setContentText("Xóa thất bại");
+				alert.show();
 			}
 			bookList.remove(bookSelected);
 			Alert alert2 = new Alert(AlertType.INFORMATION);
 			alert.setContentText("Xóa thành công!");
+			alert.show();
 		}
 	}
 
@@ -293,9 +308,9 @@ public class AppController implements Initializable {
 				e1.printStackTrace();
 			}
 			userList.remove(userSelected);
-			Alert alert2 = new Alert(AlertType.INFORMATION);
 			alert.setContentText("Xóa thành công!");
 		}
+		alert.show();
 	}
 
 	public void initBookpage(Statement st) {
@@ -311,7 +326,7 @@ public class AppController implements Initializable {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} 
 		bookList = FXCollections.observableArrayList(books);
 		bookIdCol.setCellValueFactory(new PropertyValueFactory<User, String>("bookId"));
 		bookTitleCol.setCellValueFactory(new PropertyValueFactory<User, String>("bookTitle"));
@@ -349,33 +364,19 @@ public class AppController implements Initializable {
 		numberOfUsers.setText(Integer.toString(users.size()));
 	}
 
-	public void initBorrowPage(Statement st) {
-		sql = "SELECT p.PhieuId, p.AccId, a.Name, bk.BookId, BookTitle, BorrowDay, p.LibId, Username, Deposit, State, ReturnDay, ReturnedDay\r\n"
-				+ "FROM Borrow_Book bk, Account a, Librarian l, Book b, PhieuMuon p\r\n"
-				+ "WHERE (bk.BookId = b.BookId) AND (bk.PhieuId = p.PhieuId) AND (p.AccId = a.AccId) AND (p.LibId = l.LibId)";
+	public void initPhieuMuon() {
+		sql = "SELECT PhieuId FROM PhieuMuon";
 		try {
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				Borrow borrow = new Borrow(rs.getString("PhieuId"), rs.getString("AccId"), rs.getString("Name"),
-						rs.getString("BookId"), rs.getString("BookTitle"), rs.getString("BorrowDay"),
-						rs.getString("LibId"), rs.getString("Username"), rs.getInt("Deposit"), rs.getInt("State"),
-						rs.getString("ReturnDay"), rs.getString("ReturnedDay"));
-				borrows.add(borrow);
+				String id = rs.getString(1);
+				idList.add(id);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		borrowList = FXCollections.observableArrayList(borrows);
-		phieuIdCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("phieuId"));
-		usernameCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("name"));
-		bookTitleCol2.setCellValueFactory(new PropertyValueFactory<Borrow, String>("bookTitle"));
-		borrowDayCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("borrowDay"));
-		librarianCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("libName"));
-		depositCol.setCellValueFactory(new PropertyValueFactory<Borrow, Integer>("deposit"));
-		stateCol.setCellValueFactory(new PropertyValueFactory<Borrow, Integer>("state"));
-		returnDayCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("returnDay"));
-		returnedDayCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("returnedDay"));
-		borrowsView.setItems(borrowList);
+		ObservableList<String> listId = FXCollections.observableArrayList(idList);
+		phieuIdField.setItems(listId);
 	}
 
 	@FXML
@@ -399,10 +400,17 @@ public class AppController implements Initializable {
 		users.removeAll(users);
 		initUserpage(st);
 	}
-
-	public void resetBorrowpage() {
+	
+	@FXML
+	public void resetBorrowPage() {
+		nameUserField.clear();
+		nameDetail.setText(null);
+		libDetail.setText(null);
+		feeDetail.setText(null);
+		dateDetail.setText(null);
 		borrows.removeAll(borrows);
-		initBorrowPage(st);
+		borrowList.removeAll(borrowList);
+		initPhieuMuon();
 	}
 
 	@FXML
@@ -495,38 +503,6 @@ public class AppController implements Initializable {
 		userList.addAll(users);
 	}
 
-	@FXML
-	public void searchBorrow() {
-		String phieuId = "";
-		String userId = "";
-
-		if (isNullTextField(phieuIdField)) {
-			phieuId = phieuIdField.getText();
-		}
-		if (isNullTextField(userIdBField)) {
-			userId = userIdBField.getText();
-		}
-
-		borrows.removeAll(borrows);
-		sql = "SELECT p.PhieuId, p.AccId, a.Name, bk.BookId, BookTitle, BorrowDay, p.LibId, Username, Deposit, State, ReturnDay, ReturnedDay FROM Borrow_Book bk, Account a, Librarian l, Book b, PhieuMuon p WHERE (bk.BookId = b.BookId) AND (bk.PhieuId = p.PhieuId) AND (p.AccId = a.AccId) AND (p.LibId = l.LibId) "
-				+ "and p.PhieuId like '%" + phieuId + "%' AND p.AccId like N'%" + userId + "';";
-		System.out.println(sql);
-		try {
-			rs = st.executeQuery(sql);
-			while (rs.next()) {
-				Borrow borrow = new Borrow(rs.getString("PhieuId"), rs.getString("AccId"), rs.getString("Name"),
-						rs.getString("BookId"), rs.getString("BookTitle"), rs.getString("BorrowDay"),
-						rs.getString("LibId"), rs.getString("Username"), rs.getInt("Deposit"), rs.getInt("State"),
-						rs.getString("ReturnDay"), rs.getString("ReturnedDay"));
-				borrows.add(borrow);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		borrowList.removeAll(borrowList);
-		borrowList.addAll(borrows);
-	}
-
 	public void detailAndUpdate(Book selectedBook) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -571,55 +547,6 @@ public class AppController implements Initializable {
 			bookList.addAll(books);
 		} else {
 			resetBookpage();
-		}
-	}
-
-	@FXML
-	public void isBorrowed(ActionEvent e) {
-		if (isBorrowedBtn.isSelected()) {
-			borrows.removeAll(borrows);
-			for (Borrow borrow : borrowList) {
-				if (borrow.getState() == 0) {
-					borrows.add(borrow);
-				}
-			}
-			borrowList.removeAll(borrowList);
-			borrowList.addAll(borrows);
-		} else {
-			resetBorrowpage();
-		}
-	}
-
-	@FXML
-	public void isReturned(ActionEvent e) {
-		if (isReturnedBtn.isSelected()) {
-			borrows.removeAll(borrows);
-			for (Borrow borrow : borrowList) {
-				if (borrow.getState() == 1) {
-					borrows.add(borrow);
-				}
-			}
-			borrowList.removeAll(borrowList);
-			borrowList.addAll(borrows);
-		} else {
-			resetBorrowpage();
-		}
-	}
-
-	public void isOverdated(ActionEvent e) {
-		if (isOverdatedBtn.isSelected()) {
-			borrows.removeAll(borrows);
-			for (Borrow borrow : borrowList) {
-				LocalDate returnDay = LocalDate.parse(borrow.getReturnDay());
-				LocalDate now = LocalDate.now();
-				if (returnDay.isBefore(now) && borrow.getState() == 0) {
-					borrows.add(borrow);
-				}
-			}
-			borrowList.removeAll(borrowList);
-			borrowList.addAll(borrows);
-		} else {
-			resetBorrowpage();
 		}
 	}
 
@@ -685,7 +612,7 @@ public class AppController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void authorStatis() {
 		int i = 0;
 		int j = 0;
@@ -721,7 +648,7 @@ public class AppController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void publisherStatis() {
 		int i = 0;
 		int j = 0;
@@ -756,5 +683,152 @@ public class AppController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setName(String name) {
+		name1.setText(name);
+	}
+
+	@FXML
+	public void showDetail() {
+		borrows.removeAll(borrows);
+		String id = phieuIdField.getValue();
+		sql = " SELECT a.Name, l.Username, pm.BorrowDay, pm.Deposit \r\n"
+				+ "  FROM PhieuMuon pm INNER JOIN Account a ON pm.AccId = a.AccId\r\n"
+				+ "					INNER JOIN Librarian l ON pm.LibId = l.LibId\r\n" + "  WHERE pm.PhieuId = '" + id
+				+ "';";
+		System.out.println(sql);
+		try {
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				nameDetail.setText(rs.getString(1));
+				libDetail.setText(rs.getString(2));
+				feeDetail.setText(rs.getString(4));
+				dateDetail.setText(rs.getString(3));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		sql = "SELECT pm.PhieuId,b.BookId, b.BookTitle, bb.ReturnDay, bb.ReturnedDay\r\n"
+				+ "  FROM PhieuMuon pm INNER JOIN Borrow_Book bb ON pm.PhieuId = bb.PhieuId\r\n"
+				+ "					INNER JOIN Book b ON b.BookId = bb.BookId\r\n" + "  WHERE pm.PhieuId = '" + id
+				+ "';";
+		System.out.println(sql);
+		try {
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				borrowDetail b = new borrowDetail(rs.getString("PhieuId"), rs.getString("BookTitle"),
+						rs.getString("ReturnDay"), rs.getString("ReturnedDay"), rs.getString("BookId"));
+				borrows.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		borrowList = FXCollections.observableArrayList(borrows);
+		idZ.setCellValueFactory(new PropertyValueFactory<borrowDetail, String>("id"));
+		nameZ.setCellValueFactory(new PropertyValueFactory<borrowDetail, String>("name"));
+		day1Z.setCellValueFactory(new PropertyValueFactory<borrowDetail, String>("returnDate"));
+		day2Z.setCellValueFactory(new PropertyValueFactory<borrowDetail, String>("returnedDate"));
+		borrowsView.setItems(borrowList);
+	}
+
+	@FXML
+	void traSach(ActionEvent e) {
+		borrowDetail borrow = borrowsView.getSelectionModel().getSelectedItem();
+		if (borrow.getReturnedDate() != null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setContentText("Sách đã được trả!");
+			alert.show();
+			return;
+		}
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Xác nhận trả sách?", ButtonType.YES, ButtonType.NO,
+				ButtonType.CANCEL);
+		alert.showAndWait();
+		if (alert.getResult() == ButtonType.YES) {
+			sql = "UPDATE Borrow_Book SET ReturnedDay = GETDATE() WHERE BookId = '" + borrow.getBookId()
+					+ "' AND PhieuId = '" + borrow.getId() + "';";
+			try {
+				st.execute(sql);
+			} catch (SQLException e1) {
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+				alert.setContentText("Có lỗi xảy ra!");
+			}
+			bookList.remove(borrow);
+
+			sql = "UPDATE Book SET IsBorrow = IsBorrow - 1 WHERE BookId = '" + borrow.getBookId()
+					+ "';";
+			try {
+				st.execute(sql);
+			} catch (SQLException e1) {
+				Alert alert2 = new Alert(AlertType.INFORMATION);
+				alert.setContentText("Có lỗi xảy ra!");
+			}
+
+			Alert alert2 = new Alert(AlertType.INFORMATION);
+			alert.setContentText("Trả thành công!");
+		}
+	}
+
+	@FXML
+	void baoMat(ActionEvent e) {
+		borrowDetail borrow = borrowsView.getSelectionModel().getSelectedItem();
+
+		if (borrow.getReturnedDate() != null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setContentText("Sách đã được trả!");
+			alert.show();
+			return;
+		}
+		
+		int tienPhat = 0;
+		sql = "UPDATE Book SET Lost = Lost + 1, IsBorrow = IsBorrow - 1 WHERE BookId = '" + borrow.getBookId()
+				+ "';";
+		String sql2 = "UPDATE Borrow_Book SET ReturnedDay = GETDATE() WHERE BookId = '" + borrow.getBookId()
+		+ "' AND PhieuId = '" + borrow.getId() + "';";
+		try {
+			st.execute(sql);
+			st.execute(sql2);
+		} catch (SQLException e1) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setContentText("Có lỗi xảy ra!");
+			alert.showAndWait();
+		}
+		bookList.remove(borrow);
+
+		sql = "SELECT Price FROM Book WHERE BookId = '" + borrow.getBookId() + "';";
+		try {
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				tienPhat = rs.getInt(1);
+			}
+		} catch (SQLException e1) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setContentText("Có lỗi xảy ra!");
+			alert.showAndWait();
+		}
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setContentText("TIền phạt: " + tienPhat);
+		alert.showAndWait();
+	}
+	
+	@FXML
+	public void logout() {
+		Stage cstage = (Stage) bookIdField.getScene().getWindow();
+		cstage.close();
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/Application/Login.fxml"));
+		Parent parent = null;
+		try {
+			parent = loader.load();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		Scene scene = new Scene(parent);
+		scene.getStylesheets().addAll(this.getClass().getResource("/Application/style.css").toExternalForm());
+		stage.setScene(scene);
+		stage.show();
 	}
 }

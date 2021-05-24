@@ -10,12 +10,11 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<JFXTabPane id="statistic" fx:id="tabpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1277.0" side="LEFT" stylesheets="@style3.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatisticController">
+<JFXTabPane id="statistic" fx:id="tabpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1277.0" side="LEFT" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StatisticController">
 	<tabs>
 		<Tab styleClass="header">
 			<content>
@@ -39,18 +38,15 @@
 			<content>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
 					<children>
-						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+						<TableView fx:id="booksView" layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
 							<columns>
-								<TableColumn prefWidth="75.0" text="BookId" />
-								<TableColumn prefWidth="94.4000244140625" text="BookTitle" />
-								<TableColumn prefWidth="90.4000244140625" text="Available" />
-								<TableColumn prefWidth="91.9998779296875" text="isBorrow" />
-								<TableColumn prefWidth="125.60000610351562" text="AuthorName" />
-								<TableColumn prefWidth="72.0" text="Price" />
-								<TableColumn prefWidth="128.7999267578125" text="Publisher" />
-                        <TableColumn prefWidth="152.00002441406252" text="Genres" />
-                        <TableColumn prefWidth="75.0" text="Pages" />
-                        <TableColumn prefWidth="75.0" text="Content" />
+								<TableColumn fx:id="bookIdCol" prefWidth="67.99987030029297" text="BookId" />
+								<TableColumn fx:id="bookTitleCol" prefWidth="168.7999267578125" text="BookTitle" />
+								<TableColumn fx:id="availableCol" prefWidth="92.800048828125" text="Available" />
+								<TableColumn fx:id="isBorrowCol" prefWidth="87.199951171875" text="isBorrow" />
+								<TableColumn fx:id="authorNameCol" prefWidth="170.40005493164062" text="AuthorName" />
+								<TableColumn fx:id="priceCol" prefWidth="95.199951171875" text="Price" />
+								<TableColumn fx:id="publisherCol" prefWidth="147.199951171875" text="Publisher" />
 							</columns>
 						</TableView>
                   <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
@@ -60,14 +56,14 @@
                               <Font size="25.0" />
                            </font>
                         </Text>
-                        <JFXComboBox layoutX="119.0" layoutY="35.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
+                        <JFXComboBox fx:id="genreField" layoutX="119.0" layoutY="35.0" onAction="#searchBookByGenre" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
                         <Text fill="WHITE" layoutX="331.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author:">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Text>
-                        <JFXComboBox layoutX="426.0" layoutY="35.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
-                        <JFXComboBox layoutX="763.0" layoutY="34.0" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
+                        <JFXComboBox fx:id="authorField" layoutX="426.0" layoutY="35.0" onAction="#searchBookByAuthor" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
+                        <JFXComboBox fx:id="publisherField" layoutX="763.0" layoutY="34.0" onAction="#searchBookByPublisher" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #fff;" />
                         <Text fill="WHITE" layoutX="643.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher:">
                            <font>
                               <Font size="25.0" />
@@ -75,7 +71,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#printBook" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -104,12 +100,17 @@
                         <Insets left="-20.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
+                  <JFXButton layoutX="539.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                  <JFXButton layoutX="811.0" layoutY="719.0" onAction="#cancel" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="676.0" layoutY="719.0" onAction="#resetBookPage" prefHeight="54.0" prefWidth="114.0" style="-fx-background-color: #ff9700;" text="Reset" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -135,27 +136,14 @@
 			<content>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
 					<children>
-						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+						<TableView fx:id="authorView" layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
 							<columns>
-								<TableColumn prefWidth="420.80003356933594" text="AuthorName" />
-								<TableColumn prefWidth="412.7998046875" text="Number of Books" />
+								<TableColumn fx:id="nameAuCol" prefWidth="420.80003356933594" text="AuthorName" />
+								<TableColumn fx:id="nobAuCol" prefWidth="412.7998046875" text="Number of Books" />
 							</columns>
 						</TableView>
-                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
-                     <children>
-                        <Text fill="WHITE" layoutX="528.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AuthorName:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="697.0" layoutY="33.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </AnchorPane>
-                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
+                  <AnchorPane prefHeight="100.0" prefWidth="978.0" style="-fx-background-color: #2a2c36;" />
+                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#printAuthor" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -169,7 +157,7 @@
                      <padding>
                         <Insets left="-20.0" />
                      </padding></JFXButton>
-                  <JFXButton alignment="TOP_LEFT" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" disable="true" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -184,12 +172,12 @@
                         <Insets left="-20.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
+                  <JFXButton layoutX="811.0" layoutY="719.0" onAction="#cancel" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                  <JFXButton disable="true" layoutX="681.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -215,27 +203,14 @@
 			<content>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
 					<children>
-						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+						<TableView fx:id="pubView" layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
 							<columns>
-								<TableColumn prefWidth="419.73341369628906" text="Publisher" />
-								<TableColumn prefWidth="413.06640625" text="Number of Books" />
+								<TableColumn fx:id="namePubCol" prefWidth="419.73341369628906" text="Publisher" />
+								<TableColumn fx:id="nobPubCol" prefWidth="413.06640625" text="Number of Books" />
 							</columns>
 						</TableView>
-                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
-                     <children>
-                        <Text fill="WHITE" layoutX="577.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="701.0" layoutY="29.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </AnchorPane>
-                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
+                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;" />
+                  <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#printPub" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -249,7 +224,7 @@
                      <padding>
                         <Insets left="-20.0" />
                      </padding></JFXButton>
-                  <JFXButton alignment="TOP_LEFT" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
+                  <JFXButton alignment="TOP_LEFT" disable="true" layoutX="760.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #39e600;" text="  Open" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -264,12 +239,12 @@
                         <Insets left="-20.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
+                  <JFXButton disable="true" layoutX="675.0" layoutY="719.0" prefHeight="44.0" style="-fx-background-color: #3396ff;" text="Update" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                  <JFXButton layoutX="811.0" layoutY="719.0" onAction="#cancel" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -295,38 +270,15 @@
 			<content>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
 					<children>
-						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+						<TableView fx:id="userView" layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
 							<columns>
-								<TableColumn prefWidth="104.00025177001953" text="UserId" />
-								<TableColumn prefWidth="217.599609375" text="Name" />
-								<TableColumn prefWidth="188.53268432617188" text="Birth" />
-								<TableColumn prefWidth="324.0" text="Contact" />
+								<TableColumn fx:id="userIdCol2" prefWidth="104.00025177001953" text="UserId" />
+								<TableColumn fx:id="usernameCol" prefWidth="217.599609375" text="Name" />
+								<TableColumn fx:id="birthCol" prefWidth="188.53268432617188" text="Birth" />
+								<TableColumn fx:id="contactCol" prefWidth="324.0" text="Contact" />
 							</columns>
 						</TableView>
-                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
-                     <children>
-                        <Text fill="WHITE" layoutX="331.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserId:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                        <Text fill="WHITE" layoutX="673.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Text>
-                        <TextField layoutX="425.0" layoutY="31.0" prefHeight="39.0" prefWidth="200.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                        <TextField layoutX="756.0" layoutY="32.0" prefHeight="39.0" prefWidth="200.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;" />
                   <JFXButton alignment="TOP_LEFT" layoutX="597.0" layoutY="123.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #39e600;" text="  Print" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
@@ -361,7 +313,7 @@
                         <Font size="25.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                  <JFXButton layoutX="811.0" layoutY="719.0" onAction="#cancel" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -387,25 +339,25 @@
 			<content>
 				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #737373;">
 					<children>
-						<TableView layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
+						<TableView fx:id="borrowsView" layoutX="76.0" layoutY="189.0" prefHeight="511.0" prefWidth="833.0">
 							<columns>
-								<TableColumn text="ID" />
-								<TableColumn text="UserID" />
-								<TableColumn minWidth="0.0" prefWidth="217.33349609375" text="BookTitle" />
-								<TableColumn prefWidth="82.66650390625" text="LibID" />
-								<TableColumn prefWidth="126.1337890625" text="Ngày mượn" />
-								<TableColumn prefWidth="122.1328125" text="Hạn trả" />
-								<TableColumn prefWidth="125.599609375" text="Ngày trả" />
+								<TableColumn fx:id="phieuIdCol" text="ID" />
+								<TableColumn fx:id="userIdCol" text="UserID" />
+								<TableColumn fx:id="bookTitleCol2" minWidth="0.0" prefWidth="217.33349609375" text="BookTitle" />
+								<TableColumn fx:id="libIdCol" prefWidth="82.66650390625" text="LibID" />
+								<TableColumn fx:id="borrowDayCol" prefWidth="126.1337890625" text="Ngày mượn" />
+								<TableColumn fx:id="returnDayCol" prefWidth="122.1328125" text="Hạn trả" />
+								<TableColumn fx:id="returnedDayCol" prefWidth="125.599609375" text="Ngày trả" />
 							</columns>
 						</TableView>
                   <AnchorPane prefHeight="100.0" prefWidth="977.0" style="-fx-background-color: #2a2c36;">
                      <children>
-                        <JFXToggleButton layoutX="733.0" layoutY="16.0" text="Đang mượn" textFill="WHITE">
+                        <JFXToggleButton fx:id="isBorrowedBtn" layoutX="733.0" layoutY="16.0" onAction="#isBorrowed" text="Đang mượn" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </JFXToggleButton>
-                        <JFXToggleButton layoutX="561.0" layoutY="18.0" text="Quá hạn" textFill="WHITE">
+                        <JFXToggleButton fx:id="isOverdatedBtn" layoutX="561.0" layoutY="18.0" onAction="#isOverdated" text="Quá hạn" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -446,7 +398,7 @@
                         <Font size="25.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="811.0" layoutY="719.0" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
+                  <JFXButton layoutX="811.0" layoutY="719.0" onAction="#cancel" prefHeight="44.0" prefWidth="115.0" style="-fx-background-color: #dc3545;" text="Cancel" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>

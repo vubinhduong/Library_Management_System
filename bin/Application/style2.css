@@ -1,0 +1,90 @@
+#statistic {
+	-fx-tab-min-height: 300.0px;
+	-fx-tab-max-height: 300.0px;
+	-fx-tab-min-width: 100.0px;
+	-fx-tab-max-width: 100.0px;	
+}
+
+#header {
+	-fx-font-size: 35.0px;
+	-fx-text-fill: #fff;
+}
+
+.tab {
+	-fx-background-color: #2a2c36;
+	-fx-padding: 0.0 0.0 0.0 0.0;
+}
+
+.tab:hover {
+	-fx-cursor: hand;
+}
+
+.tab-header-background {
+	-fx-background-color: #2a2c36;
+}
+
+.tab-pane *.tab-header-background {
+	-fx-background-color: #2a2c36;
+}
+
+.tab .tab-label {
+	-fx-rotate: 90.0;	
+}
+
+#statistic .tab:selected .label {
+    -fx-text-fill: #3399ff;
+} 
+
+#statistic .tab:selected .glyph-icon {
+    -fx-fill: #3399ff;
+} 
+
+
+
+.table-view{
+    -fx-background-color: #fff;
+ }
+
+.table-view:focused{
+    
+}
+
+.table-view .column-header {
+     -fx-background-color: transparent;
+} 
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0.0%, #424141 100.0%);
+}
+
+.table-view .column-header-background .label{
+     -fx-background-color: transparent; 
+    -fx-font-weight:bold;
+    -fx-text-fill: white;
+    -fx-font-size: 19.0px;
+}
+
+.table-view .table-column{
+    -fx-alignment:center;
+}
+
+.table-view .table-cell{
+    -fx-font-size:18.0px;           
+}
+
+.table-row-cell{
+    -fx-background-color: white;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em; 
+}
+
+.table-row-cell:odd{
+    -fx-background-color:  #ffd480;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em;  
+}
+
+
+.table-row-cell:selected {
+    -fx-background-color: #00ccff;
+}

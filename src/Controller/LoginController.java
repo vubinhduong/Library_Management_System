@@ -26,6 +26,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
+	
+	private String name;
 
 	@FXML
 	private Button loginBtn;
@@ -58,6 +60,8 @@ public class LoginController implements Initializable {
 			}
 			Scene scene = new Scene(parent);
 			scene.getStylesheets().addAll(this.getClass().getResource("/Application/style.css").toExternalForm());
+			AppController ac = loader.getController();
+			ac.setName(name);
 			stage.setScene(scene);
 			stage.show();
 		}
@@ -90,6 +94,7 @@ public class LoginController implements Initializable {
 			e.printStackTrace();
 		}
 		if (listLib.contains(username) && listPass.contains(password)) {
+			name = username;
 			return true;
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);

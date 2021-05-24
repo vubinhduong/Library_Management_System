@@ -10,6 +10,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -24,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1277.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1277.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AppController">
    <children>
       <JFXTabPane id="tabpane" fx:id="tabPane" prefHeight="800.0" prefWidth="1277.0">
          <tabs>
@@ -41,7 +42,7 @@
                                           <Font size="35.0" />
                                        </font>
                                     </Text>
-                                    <Text fill="WHITE" layoutX="179.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A">
+                                    <Text fx:id="name1" fill="WHITE" layoutX="179.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0">
                                        <font>
                                           <Font size="35.0" />
                                        </font>
@@ -55,7 +56,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Text>
-                                    <Text fill="WHITE" layoutX="145.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log out" underline="true">
+                                    <Text fill="WHITE" layoutX="145.0" layoutY="383.0" onMouseClicked="#logout" strokeType="OUTSIDE" strokeWidth="0.0" text="Log out" underline="true">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
@@ -257,86 +258,87 @@
           </Tab>
           <Tab text="Borrow">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #f7f7f7;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #fff;">
                      <children>
-                        <TableView fx:id="borrowsView" layoutX="39.0" layoutY="120.0" prefHeight="507.0" prefWidth="1200.0">
+                        <Text layoutX="110.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Phiếu mượn:" AnchorPane.topAnchor="105.1015625">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <JFXButton layoutX="1022.0" layoutY="29.0" onAction="#resetBorrowPage" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #ff9700;" text="Reset" textFill="WHITE" AnchorPane.rightAnchor="105.19999999999982">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="797.0" layoutY="29.0" onAction="#baoMat" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #dc3545;" text="Báo mất" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="332.0" layoutY="30.0" onAction="#addBorrowView" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #39e600;" text="Add" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton layoutX="563.0" layoutY="30.0" onAction="#traSach" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #007bff;" text="Trả sách" textFill="WHITE" AnchorPane.leftAnchor="563.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <ComboBox fx:id="phieuIdField" layoutX="308.0" layoutY="101.0" onAction="#showDetail" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-border-width: 1; -fx-border-color: #999;" />
+                        <JFXButton layoutX="110.0" layoutY="30.0" onAction="#statisticView" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #d635e4;" text="Statistic" textFill="WHITE" AnchorPane.leftAnchor="110.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Text layoutX="110.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên User:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="nameDetail" layoutX="227.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="669.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thủ thư:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="110.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiền cọc:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="669.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày mượn:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="libDetail" layoutX="775.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="feeDetail" layoutX="221.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="dateDetail" layoutX="818.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <TableView fx:id="borrowsView" layoutX="125.0" layoutY="262.0" prefHeight="419.0" prefWidth="1048.0">
                           <columns>
-                            <TableColumn fx:id="phieuIdCol" prefWidth="75.0" text="PhieuId" />
-                            <TableColumn fx:id="usernameCol" prefWidth="190.0" text="Username" />
-                              <TableColumn fx:id="bookTitleCol2" prefWidth="225.0" text="BookTitle" />
-                              <TableColumn fx:id="borrowDayCol" prefWidth="125.0" text="BorrowDay" />
-                              <TableColumn fx:id="librarianCol" prefWidth="185.0" text="Librarian" />
-                              <TableColumn fx:id="depositCol" prefWidth="100.0" text="Deposit" />
-                              <TableColumn fx:id="stateCol" prefWidth="75.0" text="State" />
-                              <TableColumn fx:id="returnDayCol" prefWidth="125.0" text="ReturnDay" />
-                              <TableColumn fx:id="returnedDayCol" prefWidth="99.0" text="ReturnedDay" />
+                            <TableColumn fx:id="idZ" prefWidth="156.26661682128906" text="ID Phiếu Mượn" />
+                            <TableColumn fx:id="nameZ" prefWidth="368.7998046875" text="Tên sách" />
+                              <TableColumn fx:id="day1Z" prefWidth="258.400390625" text="Ngày hẹn trả" />
+                              <TableColumn fx:id="day2Z" prefWidth="263.73284912109375" text="Ngày trả" />
                           </columns>
                         </TableView>
-                        <JFXToggleButton fx:id="isBorrowedBtn" layoutX="731.0" onAction="#isBorrowed" text="isBorrowed">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXToggleButton>
-                        <JFXToggleButton fx:id="isReturnedBtn" layoutX="912.0" onAction="#isReturned" text="isReturned">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXToggleButton>
-                        <JFXToggleButton fx:id="isOverdatedBtn" layoutX="1089.0" onAction="#isOverdated" text="isOverdated">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXToggleButton>
-                        <Text layoutX="101.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Phiếu mượn:" AnchorPane.topAnchor="29.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="101.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserId:" AnchorPane.topAnchor="74.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                        <JFXButton layoutX="1139.0" layoutY="55.0" prefHeight="50.0" prefWidth="125.0" style="-fx-background-color: #39e600;" text="Báo mất" textFill="WHITE">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton layoutX="1001.0" layoutY="55.0" prefHeight="50.0" prefWidth="125.0" style="-fx-background-color: #39e600;" text="Delete" textFill="WHITE">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton layoutX="724.0" layoutY="55.0" prefHeight="50.0" prefWidth="125.0" style="-fx-background-color: #39e600;" text="Add" textFill="WHITE">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton layoutX="863.0" layoutY="55.0" prefHeight="50.0" prefWidth="125.0" style="-fx-background-color: #39e600;" text="Trả sách" textFill="WHITE" AnchorPane.leftAnchor="863.0">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton layoutX="585.0" layoutY="55.0" onAction="#searchBorrow" prefHeight="50.0" prefWidth="125.0" style="-fx-background-color: #39e600;" text="Search" textFill="WHITE">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXButton>
-                        <TextField fx:id="phieuIdField" layoutX="253.0" layoutY="22.0" AnchorPane.topAnchor="22.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="userIdBField" layoutX="253.0" layoutY="67.0" AnchorPane.topAnchor="67.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </TextField>
-                        <Button layoutX="580.0" layoutY="1.0" mnemonicParsing="false" onAction="#statisticView" prefHeight="44.0" prefWidth="143.0" style="-fx-background-color: #d635e4;" text="Statistic" textFill="WHITE">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -346,7 +348,7 @@
                      <children>
                         <ScrollPane layoutX="-3.0" layoutY="14.0" prefHeight="743.2" prefWidth="1277.6" AnchorPane.bottomAnchor="-14.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <AnchorPane prefHeight="2000.0" prefWidth="1278.0">
+                              <AnchorPane prefHeight="1300.0" prefWidth="1278.0">
                                  <children>
                                     <Label layoutX="27.0" layoutY="13.0" text="Book" AnchorPane.leftAnchor="27.0">
                                        <font>
@@ -463,18 +465,6 @@
                                  </children>
                               </AnchorPane>
                            </content>
-                        </ScrollPane>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Manage">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #f7f7f7;">
-                     <children>
-                        <ScrollPane layoutX="349.0" layoutY="195.0" prefHeight="200.0" prefWidth="200.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                          </content>
                         </ScrollPane>
                      </children></AnchorPane>
             </content>

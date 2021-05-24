@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddBorrowController">
+   <children>
+      <AnchorPane layoutX="-14.0" layoutY="-29.0" prefHeight="60.0" prefWidth="700.0" style="-fx-background-color: #39e600;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="WHITE" layoutX="220.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Thêm Phiếu mượn">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text layoutX="44.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Phiếu mượn:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="phieuId" layoutX="197.0" layoutY="84.0" prefHeight="31.0" prefWidth="120.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Text layoutX="370.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserID:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="userId" layoutX="457.0" layoutY="86.0" onAction="#showUsername" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #bbb; -fx-border-width: 1;" />
+      <Text layoutX="44.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tên User:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="46.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiền cọc:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="370.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thủ thư:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="bookName" layoutX="163.0" layoutY="231.0" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #bbb; -fx-border-width: 1;" />
+      <Text layoutX="49.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn sách:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="returnDay" layoutX="457.0" layoutY="231.0" prefHeight="31.0" prefWidth="152.0" />
+      <Text layoutX="317.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày hẹn trả:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="deposit" layoutX="149.0" layoutY="177.0" prefHeight="31.0" prefWidth="120.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="booksView" layoutX="97.0" layoutY="279.0" prefHeight="356.0" prefWidth="538.0">
+        <columns>
+          <TableColumn fx:id="bookIdCol" prefWidth="112.00000762939453" text="BookID" />
+          <TableColumn fx:id="bookTitleCol" prefWidth="286.4000244140625" text="BookTitle" />
+            <TableColumn fx:id="priceCol" prefWidth="138.39999389648438" text="Price" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="457.0" layoutY="648.0" onAction="#addPhieu" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #007bff;" text="OK" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="568.0" layoutY="648.0" onAction="#cancel" prefHeight="44.0" prefWidth="102.0" style="-fx-background-color: #dc3545;" text="CANCEL" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <ComboBox fx:id="libId" layoutX="457.0" layoutY="132.0" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #fff; -fx-border-color: #bbb; -fx-border-width: 1;" />
+      <TextField fx:id="username" editable="false" layoutX="149.0" layoutY="131.0" prefHeight="31.0" prefWidth="168.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <JFXButton layoutX="619.0" layoutY="230.0" onAction="#addBook" prefHeight="31.0" prefWidth="51.0" style="-fx-border-color: #999;" text="ADD">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

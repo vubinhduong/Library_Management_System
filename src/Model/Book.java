@@ -15,6 +15,15 @@ public class Book {
 	private int available;
 	
 	
+	
+	public Book(String bookId, String bookTitle, long price) {
+		super();
+		this.bookId = bookId;
+		this.bookTitle = bookTitle;
+		this.price = price;
+	}
+
+
 	public Book(String bookId, String bookTitle, String authorName, String content, long price, int pages,
 			String publisher, int pubYear, int quantity, int isBorrow, int lost) {
 		super();
